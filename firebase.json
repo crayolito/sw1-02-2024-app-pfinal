@@ -1,0 +1,21 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "fir-notificacion-41516",
+          "appId": "1:613778426568:android:7459d5bf8cce4a1b4373fd",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "fir-notificacion-41516",
+          "configurations": {
+            "android": "1:613778426568:android:7459d5bf8cce4a1b4373fd"
+          }
+        }
+      }
+    }
+  }
+}
