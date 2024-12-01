@@ -17,8 +17,8 @@ class FormularioAuth extends StatefulWidget {
 
 class _FormularioAuthState extends State<FormularioAuth> {
   String _rol = "";
-  String _carnet = "";
-  String _matricula = "";
+  String _email = "";
+  String _contrasena = "";
   String _token = "";
 
   @override
@@ -80,31 +80,31 @@ class _FormularioAuthState extends State<FormularioAuth> {
           TextFormFieldCustom(
             onChanged: (value) {
               setState(() {
-                _carnet = value;
+                _email = value;
               });
             },
-            textPlaceholder: 'Carnet de identidad',
+            textPlaceholder: 'Correo Electronico',
             icon: Icons.credit_card,
           ),
           TextFormFieldCustom(
             onChanged: (value) {
               setState(() {
-                _matricula = value;
+                _contrasena = value;
               });
             },
-            textPlaceholder: 'Nro. matrícula',
+            textPlaceholder: 'Contraseña',
             icon: Icons.app_registration,
           ),
-          SelectorOptions(
-            icon: Icons.list_alt,
-            onChanged: (value) {
-              setState(() {
-                _rol = value!;
-              });
-            },
-            options: roles,
-            textPlaceholder: "Seleccione un Rol",
-          ),
+          // SelectorOptions(
+          //   icon: Icons.list_alt,
+          //   onChanged: (value) {
+          //     setState(() {
+          //       _rol = value!;
+          //     });
+          //   },
+          //   options: roles,
+          //   textPlaceholder: "Seleccione un Rol",
+          // ),
           SizedBox(
             width: size.width * 0.06,
           ),

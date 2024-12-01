@@ -6,6 +6,7 @@ import 'package:sw1final_official/features/home/presentation/screens/lista-infor
 import 'package:sw1final_official/features/home/presentation/screens/lista-ofertas.screen.dart';
 import 'package:sw1final_official/features/home/presentation/screens/map.screen.dart';
 import 'package:sw1final_official/features/home/presentation/screens/preservicio-ingreso.screen.dart';
+import 'package:sw1final_official/features/home/presentation/screens/qr-base-salir.screen.dart';
 
 final appRouter = GoRouter(initialLocation: '/', routes: [
   GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
@@ -25,4 +26,7 @@ final appRouter = GoRouter(initialLocation: '/', routes: [
   GoRoute(
       path: '/control-estacionamiento',
       builder: (context, state) => const EstacionamientoActivoScreen()),
+  GoRoute(
+      path: '/qr-salir',
+      builder: (context, state) => const QRBaseSalirScreen()),
 ]);

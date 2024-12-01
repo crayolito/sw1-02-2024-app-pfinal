@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sw1final_official/config/blocs/auth/auth_bloc.dart';
 import 'package:sw1final_official/config/constant/const.dart';
@@ -289,9 +290,12 @@ class BotonesControlWidget extends StatelessWidget {
         return Column(
           children: [
             ElevatedButton.icon(
-              onPressed: () => context.read<ParkingTimerBloc>().add(
-                    FinalizarEstacionamiento(),
-                  ),
+              onPressed: () {
+                context.read<ParkingTimerBloc>().add(
+                      FinalizarEstacionamiento(),
+                    );
+                context.push("/qr-salir");
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white24,
                 padding: EdgeInsets.symmetric(

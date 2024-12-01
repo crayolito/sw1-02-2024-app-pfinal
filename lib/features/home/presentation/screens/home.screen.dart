@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sw1final_official/config/constant/const.dart';
 import 'package:sw1final_official/features/home/presentation/widgets/formulario-auth.widget.dart';
+import 'package:sw1final_official/features/home/presentation/widgets/formulario-registro.widget.dart'; // Asegúrate de crear este archivo
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool _mostrarLogin = true;
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +60,50 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                    top: size.height * 0.31,
-                    left: size.width * 0.1,
-                    right: size.width * 0.1,
-                    child: const FormularioAuth())
+                  top: size.height * 0.31,
+                  left: size.width * 0.1,
+                  right: size.width * 0.1,
+                  child: Column(
+                    children: [
+                      _mostrarLogin
+                          ? const FormularioAuth()
+                          : const FormularioRegistro(),
+                      SizedBox(height: size.height * 0.02),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _mostrarLogin = !_mostrarLogin;
+                          });
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              _mostrarLogin
+                                  ? "¿No estás registrado? "
+                                  : "¿Ya tienes una cuenta? ",
+                              style: GoogleFonts.montserrat(
+                                color: kSecondaryColor,
+                                fontSize: size.width * 0.035,
+                              ),
+                            ),
+                            Text(
+                              _mostrarLogin
+                                  ? "Regístrate aquí"
+                                  : "Inicia sesión",
+                              style: GoogleFonts.montserrat(
+                                color: kCuartoColor,
+                                fontSize: size.width * 0.035,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
@@ -82,35 +131,16 @@ class _CurvoContainer extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final lapiz = Paint();
 
-    // Configuración base
     lapiz.color = Colors.white;
     lapiz.style = PaintingStyle.fill;
     lapiz.strokeWidth = 20;
 
-    // // Shader modificado con más control sobre el degradado
-    // lapiz.shader = LinearGradient(
-    //   begin: Alignment.topCenter,
-    //   end: Alignment.bottomCenter,
-    //   stops: const [0.0, 0.5, 1.0], // Puntos de control del degradado
-    //   colors: [
-    //     Colors.black.withOpacity(0.7), // Negro más suave arriba
-    //     Colors.grey.withOpacity(0.3), // Gris en el medio
-    //     Colors.white, // Blanco abajo
-    //   ],
-    // ).createShader(Rect.fromLTWH(0, 0, size.width, size.height));
-
     final path = Path();
 
-    // Curva ajustada más profunda y simétrica
     path.moveTo(0, size.height);
     path.lineTo(0, size.height * 0.65);
     path.quadraticBezierTo(
-        size.width * 0.5, // Punto de control X en el centro
-        size.height *
-            0.82, // Punto de control Y más abajo para mayor profundidad
-        size.width, // Punto final X
-        size.height * 0.65 // Punto final Y
-        );
+        size.width * 0.5, size.height * 0.82, size.width, size.height * 0.65);
     path.lineTo(size.width, size.height);
 
     canvas.drawPath(path, lapiz);
